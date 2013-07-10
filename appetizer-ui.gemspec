@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "rack-contrib",   "~> 1.1"
   gem.add_dependency "rack-ssl",       "~> 1.3"
   gem.add_dependency "sass",           "~> 3.1"
-  gem.add_dependency "sass-globbing",  "~> 1.0.0"
+  gem.add_dependency "sass-globbing",  "~> 1.1.0"
   gem.add_dependency "sinatra",        "~> 1.3"
   gem.add_dependency "sprockets",      "~> 2.1"
   gem.add_dependency "sprockets-sass", "~> 0.6"
