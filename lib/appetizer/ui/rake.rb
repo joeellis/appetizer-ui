@@ -1,4 +1,5 @@
 require "appetizer/rake"
+require "appetizer/ui/assets"
 require "vendorer"
 
 # For Heroku.
@@ -6,6 +7,16 @@ require "vendorer"
 desc "Download vendored assets"
 task :vendorer => :init do
   Vendorer.new(update: true).parse File.read('Vendorfile')
+end
+
+if ENV["APPETIZER_ASSETS_ENTRY_POINTS"]
+  assets = ENV["APPETIZER_ASSETS_ENTRY_POINTS"].split(",").map(&:strip).map do |name|
+    next unless asset = App.assets[name]
+
+    [asset.dependencies, asset]
+  end.flatten.compact.uniq.map(&:pathname).each
+else
+  assets = App.assets.each_file
 end
 
 task "assets:precompile" => :compile
@@ -17,6 +28,8 @@ task :compile => :vendorer do
   require "appetizer/ui/assets"
   require "fileutils"
   require "yaml"
+
+  App.init!
 
   manifest = {}
   p "assets"
