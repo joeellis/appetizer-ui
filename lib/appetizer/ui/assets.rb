@@ -1,11 +1,9 @@
 require "coffee-script"
 require "eco"
 require "fileutils"
-require "sass"
-require "sass-globbing"
 require "sinatra/base"
 require "sprockets"
-require "sprockets/sass"
+require "appetizer/ui/globbing"
 require "uglifier"
 require "yui/compressor"
 

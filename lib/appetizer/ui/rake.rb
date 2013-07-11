@@ -32,12 +32,9 @@ task :compile => :vendorer do
   App.init!
 
   manifest = {}
-  p "assets"
-  p App.assets
+
   App.assets.each_file do |path|
-    p path
-    p %r|app/views| =~ path.to_s and not %r|app/views/client| =~ path.to_s
-    # next if File.basename(path).start_with? "_"
+    next if File.basename(path).start_with? "_"
     next if %r|app/views| =~ path.to_s and not %r|app/views/client| =~ path.to_s
 
     if asset = App.assets[path]
